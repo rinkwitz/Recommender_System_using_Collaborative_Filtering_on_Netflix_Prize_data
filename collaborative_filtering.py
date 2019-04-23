@@ -4,19 +4,22 @@ import pandas as pd
 
 # params:
 num_iterations = 1000     # number of times doing gradient descent
-num_features = 30        # length of feature vector
-alpha = 0.001           # learning rate for movie vectors
-llambda = 1.0          # regularization for movie vectors
+num_features = 10         # length of feature vector
+alpha = 0.01              # learning rate for movie vectors
+llambda = 1.0             # regularization for movie vectors
 
 
 # load data:
-#df_movie_titles = pd.read_csv("netflix-prize-data/movie_titles.csv", names=["id", "year", "title"], encoding="iso-8859-1")
-df = pd.DataFrame(np.load("data_small.npy"), columns=["movie_id", "user_id", "rating", "year", "month", "day"])
+#df = pd.DataFrame(np.load("data.npy"), columns=["movie_id", "user_id", "rating", "year", "month", "day"])
+
+# optional: if you want to use only a part of the data due to memory or computational constraints slice the read-in numpy array
+df = pd.DataFrame(np.load("data.npy")[:3*10**6], columns=["movie_id", "user_id", "rating", "year", "month", "day"])
+
 df = df[["movie_id", "user_id", "rating"]]
-df.sort_values(by=["movie_id", "user_id"], ascending=[True, True], inplace=True)
-data = df.values
 dict_userid_to_index = {int(user_id):index for index, user_id in enumerate(df["user_id"].unique())}
 dict_index_to_user_id = {index:int(user_id) for index, user_id in enumerate(df["user_id"].unique())}
+#df_movie_titles = pd.read_csv("netflix-prize-data/movie_titles.csv", names=["id", "year", "title"], encoding="iso-8859-1")
+data = df.values
 
 # init matrices:
 num_movies = len(df["movie_id"].unique())
@@ -50,8 +53,8 @@ for num_iteration in range(num_iterations):
     loss = 0.5 * np.sum(((np.dot(X.T, Theta) - Y) ** 2) * R) + 0.5 * llambda * np.sum(X ** 2) + 0.5 * llambda * np.sum(Theta ** 2)
 
     # dynamically adjust learning rate:
-    if loss / d["loss"] > 1.2:
-        alpha /= 3
+    if loss / d["loss"] > 1.0:
+        alpha /= 2
         X = X_old.copy()                # reset to old X
         Theta = Theta_old.copy()        # reset to old Theta
         print("num_iteration: {}\tloss: {}\t --> adjusting learning rate".format(num_iteration + 1 - lr_adjustments, loss))
@@ -66,7 +69,7 @@ for num_iteration in range(num_iterations):
     history_lr[num_iteration + 1 - lr_adjustments] = alpha
 
     # saving weights to hard disk:
-    if (num_iteration + 1 - lr_adjustments) % 10 == 0:
+    if (num_iteration + 1 - lr_adjustments) % 100 == 0:
         print("saving weights to hard disk ... ")
         np.save("X.npy", X)
         np.save("Theta.npy", Theta)

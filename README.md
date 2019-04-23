@@ -26,7 +26,7 @@ For this project, I used the Netflix Prize data from [Kaggle](https://www.kaggle
 
 ### Preprocessing
 
-
+The downloaded data ```netflix-prize-data.zip``` has to be extracted to the local working directory of this project. After this run the script ```preprosessing.py``` to create preprocessed numpy arrays, that are saved locally to the files ```data_{0-3}.npy```.
 
 ### Collaborative Filtering
 
@@ -71,6 +71,8 @@ gradient descent in this project:
 <p align="center">
 <img src="https://latex.codecogs.com/gif.latex?\theta_{kj}:=\theta_{kj}-\alpha\left(\sum\limits_{i:r(i,&space;j)=1}(\boldsymbol{\theta}_j^\intercal&space;\boldsymbol{x}_i-y_{ij})x_{ki}&plus;\lambda&space;\theta_{kj}&space;\right&space;)" title="\theta_{kj}:=\theta_{kj}-\alpha\left(\sum\limits_{i:r(i, j)=1}(\boldsymbol{\theta}_j^\intercal \boldsymbol{x}_i-y_{ij})x_{ki}+\lambda \theta_{kj} \right )" />
 </p>
+
+
 
 
 ## Authors
