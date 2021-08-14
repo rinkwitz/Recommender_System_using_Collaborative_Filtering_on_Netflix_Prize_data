@@ -33,7 +33,7 @@ The downloaded data ```netflix-prize-data.zip``` has to be extracted to the loca
 In this collaborative filtering approach we represent the movies using a matrix <img src="https://latex.codecogs.com/gif.latex?X\in\mathbb{R}^{n_F\times&space;n_M}" title="X\in\mathbb{R}^{n_F\times n_M}" /> with <img src="https://latex.codecogs.com/gif.latex?n_F" title="n_F" /> number of features and <img src="https://latex.codecogs.com/gif.latex?n_M" title="n_M" /> number of movies. Each column of the matrix 
 
 <p align="center">
-<img src="https://latex.codecogs.com/gif.latex?\boldsymbol{x_i}:=&space;\begin{pmatrix}&space;x_{1i}\\&space;\vdots\\&space;x_{n_Fi}&space;\end{pmatrix}" title="\boldsymbol{x_i}:= \begin{pmatrix} x_{1i}\\ \vdots\\ x_{n_Fi} \end{pmatrix}" />
+<img src="https://latex.codecogs.com/png.latex?\boldsymbol{x_i}:=&space;\begin{pmatrix}&space;x_{1i}\\&space;\vdots\\&space;x_{n_Fi}&space;\end{pmatrix}" title="\boldsymbol{x_i}:= \begin{pmatrix} x_{1i}\\ \vdots\\ x_{n_Fi} \end{pmatrix}" />
 </p>
 
 describes the features of the <img src="https://latex.codecogs.com/gif.latex?i" title="i" />-th movie. A similar representation <img src="https://latex.codecogs.com/gif.latex?\Theta\in\mathbb{R}^{n_F\times&space;n_U}" title="\Theta\in\mathbb{R}^{n_F\times n_U}" /> is used for the users with <img src="https://latex.codecogs.com/gif.latex?n_U" title="n_U" /> number of users. Again each column of the matrix
